@@ -1,0 +1,15 @@
+
+{
+	"scoreData": [{
+		"users": [{
+			"userName": "Dor",
+			"userScore": "33"
+		}, {
+			"userName": "Dudu",
+			"userScore": "10"
+		}, {
+			"userName": "Luna",
+			"userScore": "20"
+		}]
+	}]
+}

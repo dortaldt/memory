@@ -1,0 +1,440 @@
+$imageHeight:100%;
+$imageWidth:auto;
+$imageBgSize:100% 100%;
+$gradOne:blue;
+$gradTwo:white;
+$inactiveShadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$activeShadow:0 14px 28px rgba(0,0,0,0.58), 0 10px 10px rgba(0,0,0,0.5);
+$shadowTrans: all 0.3s cubic-bezier(.25,.8,.25,1);
+$red: #ea4f4f;
+$cardBackColor:#353535;
+$regSpace: 16px;
+$colorGreen:#5AF400;
+$colorPink:#FF4795;
+
+
+@mixin grad($colorOne,$colorTwo){
+ 	background: -webkit-linear-gradient($colorOne,$colorTwo); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($colorOne,$colorTwo); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($colorOne,$colorTwo); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($colorOne,$colorTwo); /* Standard syntax */
+}
+
+body, html{
+	margin:0;
+	padding:0;
+	font-size: 0;
+	overflow: hidden;
+	background-color:#151515;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:100;
+
+}
+
+h1,h2,h3{
+	font-size:32px;
+	display:block;
+	color:$colorPink;
+}
+
+h2 {
+	font-size:24px;
+}
+
+h4 {
+	display:block;
+	margin:$regSpace/2 auto;
+	font-size:10px;
+	color:$colorPink;
+}
+
+.title-container {
+	font-size:16px;
+	width: 100%;
+    height: 100vh;
+    top: 0;
+    position: absolute;
+    display: block;
+    background-color: rgba(22,22,22,0.5); /* complimenting your modal colors */
+}
+
+.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.inactive{
+	visibility: hidden;
+	// display:none;
+	opacity:0;
+	transition: visibility 0s 2s, opacity 1s linear;
+}
+
+.title-background {
+	position:absolute;
+	width:100%;
+	height:100%;
+	border-radius:100%;
+}
+
+.line {
+	margin:$regSpace;
+	width:100%;
+	height:50px;
+	background-color:pink;
+}
+
+@-webkit-keyframes closePop {
+	0% {opacity:1;}
+	100% {opacity:0;}
+}
+.level-holder{
+	width:100%;
+	height:auto;
+	position: absolute;
+    margin: auto auto;
+    text-align: center;
+    top:50%;
+    transform: translateY(-50%);
+    color:white;
+}
+
+.bottom-title {
+	position: relative;
+	top:-30px;
+	-webkit-animation-name: openTitleBottom; 
+    -webkit-animation-duration: 1s; 
+    -webkit-animation-iteration-count: 1; 
+    -webkit-animation-timing-function:ease;
+    -webkit-animation-delay:1s;
+    -webkit-animation-fill-mode:forwards;
+}
+
+.upper-title {
+	position: relative;
+	top:30px;
+	-webkit-animation-name: openTitleTop; 
+    -webkit-animation-duration: 1s; 
+    -webkit-animation-iteration-count: 1; 
+    -webkit-animation-timing-function:ease;
+    -webkit-animation-delay:1s;
+    -webkit-animation-fill-mode:forwards;
+}
+
+.center-title {
+	position:relative;
+	opacity:0;
+	-webkit-animation: titelShow 3s;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-fill-mode:forwards;
+}
+
+@-webkit-keyframes titelShow {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+@-webkit-keyframes openTitleTop {
+    0%   {top:30px;}
+    100% {top:-30px}
+}
+
+@-webkit-keyframes closeTitleTop {
+    0%   {top:-30px;}
+    100% {top:30px}
+}
+
+@-webkit-keyframes openTitleBottom {
+    0%   {top:-30px;}
+    100% {top:30px}
+}
+
+@-webkit-keyframes closeTitleBottom {
+    0%   {top:30px;}
+    100% {top:-30px}
+}
+#start-button {
+	font-size:24px;
+	width: 15%;
+	height:48px;
+	margin:auto;
+	background-color:transparent;
+	border: 1px solid white;
+	border-radius:2px;
+	color:white;
+	display:block;
+	opacity:0;
+	transform: translateY(40px);
+	-webkit-animation: showButton 0.3s;
+	-webkit-animation-delay:3.5s;
+	-webkit-animation-fill-mode:forwards;
+}
+
+@-webkit-keyframes showButton{
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+#start-button:hover{
+	background-color:rgba(255,255,255,0.2)
+}
+.cards-container{
+	width:100vw;
+	height:100vh;
+}
+
+.score-main {
+	display:inline-block;
+	margin:auto;
+	font-size:16px;
+	width:140px;
+	height:auto;
+	position:fixed;
+	top: -100px;
+	left: unquote("-webkit-calc(50% - 86px)");
+	color:$colorPink;
+	// border:1px solid white;
+	// border-radius:0 0 50px 50px;
+	padding:0 $regSpace $regSpace $regSpace;
+	background-color:rgba(0,0,0,0.35);
+	box-shadow: 1px 6px 10px rgba(0,0,0,0.25);
+	transition:top 1s ease;
+}
+.visi {
+	top:16px;
+}
+
+.score-main p {
+	display:inline-block;
+	margin:0 auto;
+	font-size:24px;
+}
+
+.score-main ul {
+	width:80px;
+	display:flex;
+	justify-content: space-between;
+	margin: $regSpace/2 auto;
+	padding:0;
+}
+
+.score-main ul li {
+	display:inline-block;
+	list-style:none;
+	width:8px;
+	height:8px;
+	border: 1px solid rgba(255,255,255,0.2);
+	border-radius: 8px;
+}
+
+.full-point{
+	background-color:#F600CD;
+}
+
+.score-title {
+	text-align:center;
+}
+
+#score-message {
+	width:100%;
+	position:fixed;
+	top:40%;
+	text-align:center;
+	height:auto;
+	margin:auto;
+	font-size:25px;
+	color:$colorPink;
+}
+
+.score-number {
+	display:inline-block;
+	width:20%;
+	height:auto;
+	text-shadow: 0px 1px 6px rgba(255, 75, 241, 0.71);
+	text-align: center;
+
+}
+
+//END SCREEN:
+
+#end-screen-container {
+	font-size:16px;
+	width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    display: block;
+    background-color: rgba(22,22,22,0.5); /* complimenting your modal colors */
+    text-align:center;
+	visibility:hidden;
+}
+
+.end-spacer{
+	height:33vh;
+}
+#end-screen-container img{
+	display:block;
+	width:50%;
+	height:auto;
+	margin:0 auto;
+}
+
+.score-endscreen {
+	font-size:4em;
+	margin:0;
+	color:$colorPink;
+}
+
+//ANIMATIONS
+@keyframes score-anim {
+	0%{opacity:0; transform:translate(0,-30px);}
+	20%{opacity:1;}
+	40%{opacity:1; transform:translate(0,-30px);}
+	75%{opacity:0; transform:translate(0,-50px);}
+	100%{opacity:0; transform:translate(0,-60px);}
+}
+
+@keyframes fail-anim {
+	0% {background-color: rgba(0,0,0,0.25);}
+	50% {background-color: $colorPink;}
+	100% {background-color: rgba(0,0,0,0.25);}
+}
+
+@keyframes success-amim {
+	0% {background-color: rgba(0,0,0,0.25);}
+	50% {background-color: green;}
+	100% {background-color: rgba(0,0,0,0.25);}
+}
+
+.back {
+	background-image: url("../../images/memory_cover.svg");
+	background-repeat:no-repeat;
+	background-size:$imageBgSize;
+	background-color:$cardBackColor;
+}
+
+@keyframes fadein {
+    from { background-color: $colorPink; }
+    to   { background-color: $cardBackColor; }
+}
+
+
+.back:hover {
+		background-color:#555555;
+	}
+
+.success{
+	background-image: url("../../images/memory_cover_success.svg");
+	background-repeat:no-repeat;
+	background-size:$imageBgSize;
+	background-color:grey;
+}
+
+.card-image{
+	width:100%;
+	height:100%;
+}
+
+.open {
+	background-color:$colorPink;
+}
+
+.card {
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
+	width: 12.5%;
+	height:33.3333333%;
+	display:inline-block;
+	border: 1px solid black;
+	box-shadow: $inactiveShadow;
+	transition: $shadowTrans;
+
+	.one{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/dor.svg);
+		background-size:$imageBgSize;
+  		box-shadow:$activeShadow;
+		}
+
+	.two{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/pavel.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.three{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/amir.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.four{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/barak.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.five{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/eyal.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.six{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/yana.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.seven{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/ohad.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.eight{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/ofer.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.nine{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/uri.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.ten{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/anat.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.eleven{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(https://www.circuito.io/static/images/about/maayan.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+	.twelve{
+		height:$imageHeight;
+		width:$imageWidth;
+		background-image:url(../images/card_test.svg);
+		background-size:$imageBgSize;
+		box-shadow:$activeShadow;
+	}
+}
+
+
+	
